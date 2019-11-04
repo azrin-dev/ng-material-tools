@@ -1,0 +1,255 @@
+<div class="material-editor-toolbar" *ngIf="showToolbar"
+      fxLayout fxLayoutAlign="center"
+>
+   <div  class="material-editor-toolbar-container"
+         fxLayout="row wrap"
+         fxLayoutAlign="center center"
+   >
+      <!-- Undo/Redo Group  -->
+      <div class="material-editor-toolbar-set">
+         <mat-button-toggle-group>
+            <mat-button-toggle type="button" title="Undo"
+               class="material-editor-button"
+               (click)="triggerCommand('undo')"
+               tabindex="-1"
+            >
+               <i class='fa fa-undo'></i>
+            </mat-button-toggle>
+            <mat-button-toggle type="button"
+                  title="Redo"
+                  class="material-editor-button"
+                  (click)="triggerCommand('redo')"
+                  tabindex="-1"
+            >
+               <i class='fa fa-repeat'></i>
+            </mat-button-toggle>
+         </mat-button-toggle-group>
+      </div>     
+      <!-- Text Style Group -->
+      <div class="material-editor-toolbar-set">
+         <mat-button-toggle-group>
+            <mat-button-toggle [id]="'bold-'+id" type="button" title="Bold" class="material-editor-button" (click)="triggerCommand('bold')"
+                     [disabled]="htmlMode" tabindex="-1">
+               <i class='fa fa-bold'>
+                  </i>
+               </mat-button-toggle> 
+            <mat-button-toggle [id]="'italic-'+id" type="button" title="Italic" class="material-editor-button"
+                     (click)="triggerCommand('italic')"
+                     [disabled]="htmlMode" tabindex="-1">
+               <i class='fa fa-italic'></i>
+            </mat-button-toggle> 
+            <mat-button-toggle [id]="'underline-'+id" type="button" title="Underline" class="material-editor-button"
+                     (click)="triggerCommand('underline')" [disabled]="htmlMode" tabindex="-1">
+               <i class='fa fa-underline'></i>
+            </mat-button-toggle> 
+            <mat-button-toggle [id]="'strikeThrough-'+id" type="button" title="Strikethrough" class="material-editor-button"
+                     (click)="triggerCommand('strikeThrough')" [disabled]="htmlMode" tabindex="-1">
+               <i class='fa fa-strikethrough'></i>
+            </mat-button-toggle> 
+            <mat-button-toggle [id]="'subscript-'+id" type="button" title="Subscript" class="material-editor-button"
+                     (click)="triggerCommand('subscript')" [disabled]="htmlMode" tabindex="-1">
+               <i class='fa fa-subscript'></i>
+            </mat-button-toggle> 
+            <mat-button-toggle [id]="'superscript-'+id" type="button" title="Superscript" class="material-editor-button"
+                     (click)="triggerCommand('superscript')" [disabled]="htmlMode" tabindex="-1">
+               <i class='fa fa-superscript'></i>
+            </mat-button-toggle> 
+         </mat-button-toggle-group>
+      </div>
+
+      <!-- Text Alignment GRoup-->
+      <div class="material-editor-toolbar-set">
+         <mat-button-toggle-group>
+            <mat-button-toggle [id]="'justifyLeft-'+id" type="button" title="Justify Left" class="material-editor-button"
+                     (click)="triggerCommand('justifyLeft')" [disabled]="htmlMode" tabindex="-1"><i
+               class='fa fa-align-left'></i></mat-button-toggle>
+            <mat-button-toggle [id]="'justifyCenter-'+id" type="button" title="Justify Center" class="material-editor-button"
+                     (click)="triggerCommand('justifyCenter')" [disabled]="htmlMode" tabindex="-1"><i class='fa fa-align-center'></i></mat-button-toggle>
+            <mat-button-toggle [id]="'justifyRight-'+id" type="button" title="Justify Right" class="material-editor-button"
+                     (click)="triggerCommand('justifyRight')" [disabled]="htmlMode" tabindex="-1">
+               <i class='fa fa-align-right'></i></mat-button-toggle>
+            <mat-button-toggle [id]="'justifyFull-'+id" type="button" title="Justify Full" class="material-editor-button"
+                     (click)="triggerCommand('justifyFull')" [disabled]="htmlMode" tabindex="-1"><i
+               class='fa fa-align-justify'></i></mat-button-toggle>
+         </mat-button-toggle-group>
+      </div>
+
+      <!-- Text Indent  -->
+      <div class="material-editor-toolbar-set">
+         <mat-button-toggle-group>
+            <mat-button-toggle [id]="'indent-'+id" type="button" title="Indent" class="material-editor-button"
+                     (click)="triggerCommand('indent')"
+                     [disabled]="htmlMode" tabindex="-1"><i class='fa fa-indent'></i>
+            </mat-button-toggle>
+            <mat-button-toggle [id]="'outdent-'+id" type="button" title="Outdent" class="material-editor-button"
+                     (click)="triggerCommand('outdent')"
+                     [disabled]="htmlMode" tabindex="-1"><i class='fa fa-outdent'></i>
+            </mat-button-toggle>
+         </mat-button-toggle-group>
+      </div>
+
+      <!-- List Items  -->
+      <div class="material-editor-toolbar-set">
+         <mat-button-toggle-group>
+            <mat-button-toggle [id]="'insertUnorderedList-'+id" type="button" title="Unordered List" class="material-editor-button"
+                     (click)="triggerCommand('insertUnorderedList')" [disabled]="htmlMode" tabindex="-1"><i class='fa fa-list-ul'></i>
+            </mat-button-toggle>
+            <mat-button-toggle [id]="'insertOrderedList-'+id" type="button" title="Ordered List" class="material-editor-button"
+                     (click)="triggerCommand('insertOrderedList')" [disabled]="htmlMode" tabindex="-1"><i class='fa fa-list-ol'></i>
+            </mat-button-toggle>
+         </mat-button-toggle-group>
+      </div>
+      
+      <!-- Text Format  -->
+      <div class="material-editor-toolbar-set">
+         <label [for]="'heading-'+id" class="block-label" tabindex="-1"></label>
+         <select  title="Formatting" [id]="'heading-'+id" 
+                  class="select-heading" [(ngModel)]="block"
+                  (change)="triggerCommand(block)"
+                  [disabled]="htmlMode"  tabindex="-1"
+         >
+            <optgroup label="Formatting"></optgroup>
+            <option class="h1" value="h1">Heading 1</option>
+            <option class="h2" value="h2">Heading 2</option>
+            <option class="h3" value="h3">Heading 3</option>
+            <option class="h4" value="h4">Heading 4</option>
+            <option class="h5" value="h5">Heading 5</option>
+            <option class="h6" value="h6">Heading 6</option>
+            <option class="p" value="p">Paragraph</option>
+            <option class="pre" value="pre">Predefined</option>
+            <option class="div" value="div">Standard</option>
+            <option class="default" value="default">Default</option>
+         </select>
+      </div>
+      
+      <!-- Font Style  -->
+      <div class="material-editor-toolbar-set">
+         <label [for]="'fontSelector-'+id" class="block-label"></label>
+         <select title="Font Name" [id]="'fontSelector-'+id" class="select-font" [(ngModel)]="fontName"
+                  (change)="setFontName(fontName)"
+                  [disabled]="htmlMode" tabindex="-1">
+            <optgroup label="Font Name"></optgroup>
+            <option *ngFor="let item of fonts" [class]="item.class" [value]="item.name">{{item.name}}</option>
+         </select>
+      </div>
+
+      <!-- Font Size Selector -->
+      <div class="material-editor-toolbar-set">
+         <label [for]="'fontSizeSelector-'+id" class="block-label"></label>
+         <select title="Font Size" [id]="'fontSizeSelector-'+id" class="select-font-size" [(ngModel)]="fontSize"
+                  (change)="setFontSize(fontSize)"
+                  [disabled]="htmlMode" tabindex="-1">
+            <optgroup label="Font Sizing"></optgroup>
+            <option class="size1" value="1">1</option>
+            <option class="size2" value="2">2</option>
+            <option class="size3" value="3">3</option>
+            <option class="size4" value="4">4</option>
+            <option class="size5" value="5">5</option>
+            <option class="size6" value="6">6</option>
+            <option class="size7" value="7">7</option>
+         </select>
+      </div>
+
+      <!-- Font Size  -->
+      <div class="material-editor-toolbar-set">
+         <mat-button-toggle-group
+            fxLayout 
+            fxLayoutAlign="center center"
+         >
+            <input style="display: none"
+               type="color" 
+               (change)="insertColor(fgInput.value, 'textColor')"
+               #fgInput
+            >
+            <mat-button-toggle [id]="'foregroundColorPicker-'+id" type="button" 
+                  class="material-editor-button" 
+                  (click)="fgInput.click()" 
+                  title="Text Color"
+                  [disabled]="htmlMode" 
+                  tabindex="-1"               
+            >
+               <span class="color-label foreground"><i class="fa fa-font"></i></span>
+            </mat-button-toggle>
+            <input style="display: none"
+                  type="color" 
+                  (change)="insertColor(bgInput.value, 'backgroundColor')"
+                  #bgInput
+            >            
+            <mat-button-toggle [id]="'backgroundColorPicker-'+id" 
+                  type="button" class="material-editor-button color-label background" 
+                  (click)="bgInput.click()" 
+                  title="Background Color"
+                  [disabled]="htmlMode" tabindex="-1"
+            >
+               <i class="fa fa-font"></i>
+            </mat-button-toggle>
+            
+         </mat-button-toggle-group>
+      </div>
+
+      <!-- Font Color  -->
+      <div *ngIf="customClasses" class="material-editor-toolbar-set">
+         <label [for]="'customClassSelector-'+id" class="block-label"></label>
+         <select title="Custom Style" [id]="'customClassSelector-'+id"                            class="select-custom-style" [(ngModel)]="customClassId"
+               (change)="setCustomClass(customClassId)"
+               [disabled]="htmlMode" tabindex="-1">
+            <optgroup label="Custom Class"></optgroup>
+            <option class="" value=-1>Clear Class</option>
+            <option *ngFor="let item of customClasses; let i = index" [class]="item.class" [value]="i">{{item.name}}</option>
+         </select>
+      </div>
+
+      <!-- Misc Settings  -->
+      <div class="material-editor-toolbar-set">
+         <mat-button-toggle-group>
+            <mat-button-toggle [id]="'link-'+id" type="button" class="material-editor-button" (click)="insertUrl()"
+                     title="Insert Link" [disabled]="isLinkButtonDisabled" tabindex="-1">
+               <i class="fa fa-link"></i>
+            </mat-button-toggle>
+            <mat-button-toggle [id]="'unlink-'+id" type="button" class="material-editor-button" (click)="triggerCommand('unlink')"
+                     title="Unlink" [disabled]="htmlMode || !linkSelected" tabindex="-1">
+               <i class="fa fa-chain-broken"></i>
+            </mat-button-toggle>
+            <input
+               style="display: none"
+               accept="image/*"
+               type="file" (change)="onFileChanged($event)"
+               #fileInput>
+            <mat-button-toggle [id]="'insertImage-'+id" type="button" class="material-editor-button" (click)="fileInput.click()" title="Insert Image"
+                     [disabled]="htmlMode" tabindex="-1"><i class="fa fa-image"></i></mat-button-toggle>
+            <mat-button-toggle [id]="'insertVideo-'+id" type="button" class="material-editor-button"
+                     (click)="insertVideo()" title="Insert Video" [disabled]="htmlMode" tabindex="-1"><i class="fa fa-video-camera"></i></mat-button-toggle>
+            <mat-button-toggle [id]="'insertHorizontalRule-'+id" type="button" title="Horizontal Line" class="material-editor-button"
+                     (click)="triggerCommand('insertHorizontalRule')" [disabled]="htmlMode" tabindex="-1"><i class="fa fa-minus"></i></mat-button-toggle>
+         </mat-button-toggle-group>
+      </div>
+
+      <!-- Remove Format  -->
+      <div class="material-editor-toolbar-set">
+         <mat-button-toggle-group>
+            <mat-button-toggle   [id]="'clearFormatting-'+id" type="button" 
+                  title="Clear Formatting" 
+                  class="material-editor-button"
+                  (click)="triggerCommand('removeFormat')" [disabled]="htmlMode" tabindex="-1"
+            >
+               <i class='fa fa-remove'></i>
+            </mat-button-toggle>
+         </mat-button-toggle-group>
+      </div>
+
+      <!-- Raw Format  -->
+      <div class="material-editor-toolbar-set">
+         <mat-button-toggle-group>
+            <mat-button-toggle [id]="'toggleEditorMode-'+id" type="button" 
+                  title="HTML Code" class="material-editor-button"
+                  (click)="triggerCommand('toggleEditorMode')" 
+                  tabindex="-1"
+            >
+               <i class='fa fa-code'></i>
+            </mat-button-toggle>
+         </mat-button-toggle-group>
+      </div>
+
+
+   </div>
+</div>

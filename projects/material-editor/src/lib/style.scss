@@ -1,0 +1,341 @@
+$fa-font-path: "https://netdna.bootstrapcdn.com/font-awesome/4.7.0/fonts" !default; // for referencing Bootstrap CDN font files directly
+@import "~font-awesome/scss/font-awesome.scss";
+@import "./config-style.scss";
+
+$editor-bg-white        :  #ffffff !default;
+$editor-btn-dev-hover   :  #f1f1f1 !default;
+$editor-bg-color        :  #f5f5f5 !default;
+$editor-btn-bg-hover    :  #fffa98 !default;
+$editor-btn-bg-active   :  #fff5b9 !default;
+$editor-optgroup        :  #f4f4f4 !default;
+$editor-bg-border       :  #dddddd !default;
+$editor-grey-dark       :  #555555 !default;
+$editor-dark            :  #1b1b1b !default;
+$editor-bg-textarea     :  RGB(250, 250, 250) !default;
+$editor-inner-border    :  0.1px solid $editor-bg-border !default;
+
+a{cursor: pointer;}
+i{padding: 0.1rem;}
+
+#editor {
+  min-height: 150px;
+  overflow: auto;
+  margin-top: 5px;
+  resize: vertical;
+  outline: none;  
+}
+
+.select-custom-style{
+   padding: 1rem;
+}
+
+.material-editor-toolbar {
+   font: 100 8px Roboto, Arial, sans-serif;
+   background-color: $editor-bg-color;
+   padding: 0.4rem;
+   border: $editor-inner-border;
+   
+   .material-editor-toolbar-set {
+      display: inline-block;
+      border-radius: 5px;
+      background-color: $editor-bg-white;
+      margin-right: 5px;
+      vertical-align: middle;
+      border: 0.5px solid $editor-bg-border;
+      margin-bottom: 3px;
+      // padding: 0.2rem;
+   
+      .material-editor-button {
+         background-color: transparent;
+         // padding: 0.4rem;
+         // min-width: 2.0rem;
+         float: left;
+         border: 0.5px solid $editor-bg-border;
+   
+         &:first-child {
+         border-radius: 5px 0 0 5px;
+         }
+   
+         &:last-child {
+         border-radius: 0 5px 5px 0;
+         }
+   
+         &:first-child:last-child {
+         border-radius: 5px;
+         }
+   
+         &:hover {
+         cursor: pointer;
+         background-color: $editor-btn-dev-hover;
+         transition: 0.2s ease;
+         }
+   
+         &:focus,
+         &.focus {
+         outline: 0;
+         }
+   
+         &:disabled {
+         background-color: $editor-bg-color;
+         pointer-events: none;
+         cursor: not-allowed;
+   
+         > .color-label {
+            pointer-events: none;
+            cursor: not-allowed;
+   
+            &.foreground {
+               :after {
+               background: $editor-dark;
+               }
+            }
+   
+            &.background {
+               background: $editor-dark;
+            }
+         }
+         }
+   
+         &.active {
+         background: $editor-btn-bg-active;
+   
+         &:hover {
+            background-color: $editor-btn-bg-hover;
+         }
+         }
+      }
+   
+      select {
+         font-size: 11px;
+         width: 90px;
+         vertical-align: middle;
+         background-color: transparent;
+         border: 0.5px solid rgba(255, 255, 255, 0);
+         border-radius: 5px;
+         outline: none;
+         padding: 0.4rem;
+         cursor: pointer;
+      }
+   
+      .select-heading {
+         width: 90px;
+         @supports not( -moz-appearance:none ) {
+         optgroup {
+            font-size: 12px;
+            background-color: $editor-optgroup;
+            padding: 5px;
+         }
+         option {
+            border: 1px solid;
+            background-color:$editor-bg-white;
+         }
+         .default {
+            font-size: 16px;
+         }
+         .h1 {
+            font-size: 24px;
+         }
+         .h2 {
+            font-size: 20px;
+         }
+         .h3 {
+            font-size: 16px;
+         }
+         .h4 {
+            font-size: 15px;
+         }
+         .h5 {
+            font-size: 14px;
+         }
+         .h6 {
+            font-size: 13px;
+         }
+         .div {
+            font-size: 12px;
+         }
+         .pre {
+            font-size: 12px;
+         }
+         }
+   
+         &:disabled {
+         background-color: $editor-bg-color;
+         pointer-events: none;
+         cursor: not-allowed;
+         }
+   
+         &:hover {
+         cursor: pointer;
+         background-color: $editor-btn-dev-hover;
+         transition: 0.2s ease;
+         }
+      }
+   
+      .select-font {
+         width: 90px;
+         @supports not( -moz-appearance:none ) {
+         optgroup {
+            font-size: 12px;
+            background-color: $editor-optgroup;
+            padding: 5px;
+         }
+         option {
+            border: 1px solid;
+            background-color:$editor-bg-white;
+         }
+         }
+   
+         &:disabled {
+         background-color: $editor-bg-color;
+         pointer-events: none;
+         cursor: not-allowed;
+         }
+   
+         &:hover {
+         cursor: pointer;
+         background-color: $editor-btn-dev-hover;
+         transition: 0.2s ease;
+         }
+      }
+   
+      .select-font-size {
+         width: 50px;
+         @supports not( -moz-appearance:none ) {
+         optgroup {
+            font-size: 12px;
+            background-color: $editor-optgroup;
+            padding: 5px;
+         }
+         option {
+            border: 1px solid;
+            background-color:$editor-bg-white;
+         }
+         .size1 {
+            font-size: 10px;
+         }
+         .size2 {
+            font-size: 12px;
+         }
+         .size3 {
+            font-size: 14px;
+         }
+         .size4 {
+            font-size: 16px;
+         }
+         .size5 {
+            font-size: 18px;
+         }
+         .size6 {
+            font-size: 20px;
+         }
+         .size7 {
+            font-size: 22px;
+         }
+         }
+   
+         &:disabled {
+         background-color: $editor-bg-color;
+         pointer-events: none;
+         cursor: not-allowed;
+         }
+   
+         &:hover {
+         cursor: pointer;
+         background-color: $editor-btn-dev-hover;
+         transition: 0.2s ease;
+         }
+      }
+   
+      .color-label {
+         position: relative;
+         cursor: pointer;
+      }
+   
+      .background {
+         font-size: smaller;
+         background: $editor-dark;
+         color: $editor-bg-white;
+      }
+   
+      .foreground {
+         :after {
+         position: absolute;
+         content: "";
+         left: -1px;
+         top: auto;
+         bottom: -3px;
+         right: auto;
+         width: 15px;
+         height: 2px;
+         z-index: 0;
+         background: $editor-dark;
+         }
+      }
+   }
+}
+ 
+.material-editor {
+   position: relative;
+   padding: 0.3rem;
+   background-color: $editor-bg-color;
+   border: $editor-inner-border;
+ 
+   ::ng-deep [contenteditable=true]:empty:before {
+     content: attr(placeholder);
+     // display: block; // for firefox
+     color: #868e96;
+     opacity: 1;
+   }  
+
+   .material-editor-wrapper {
+     position: relative;
+ 
+     .material-editor-textarea {
+       min-height: 5rem;
+       padding: 0.5rem 0.8rem 1rem 0.8rem;
+       border: $editor-inner-border;
+       background-color: $editor-bg-textarea;
+       overflow-x: hidden;
+       overflow-y: auto;
+       z-index: 2;
+       position: relative;
+ 
+       &:focus,
+       &.focus {
+        outline: 0;
+       }
+ 
+       ::ng-deep blockquote {
+         margin-left: 1rem;
+         border-left: 0.2em solid #dfe2e5;
+         padding-left: 0.5rem;
+       }
+     }
+ 
+     ::ng-deep p {
+       margin-bottom: 0;
+     }
+ 
+     .material-editor-placeholder {
+       display: none;
+       position: absolute;
+       top: 0;
+       padding: 0.5rem 0.8rem 1rem 0.9rem;
+       z-index: 1;
+       color: transparent;
+       opacity: 0.75;
+     }
+ 
+     &.show-placeholder {
+       .material-editor-placeholder {
+         display: block;
+       }
+     }
+     &.disabled {
+       cursor: not-allowed;
+       opacity: 0.5;
+       pointer-events: none;
+     }
+   }
+
+}

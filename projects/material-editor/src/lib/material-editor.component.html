@@ -1,0 +1,37 @@
+<button mat-raised-button color="primary">Primary</button>
+<button mat-raised-button color="accent">Accent</button>
+<button mat-raised-button color="warn">Warn</button>
+
+<div (focus)="onEditorFocus()" class="material-editor" #materialEditor [style.width]="config.width"
+     [style.minWidth]="config.minWidth"
+     fxLayout="column"
+     fxLayoutAlign="center"
+>
+      <lib-material-editor-toolbar *ngIf="config.toolbarPosition === 'top' " 
+                              #editorToolbar
+                              (execute)="executeCommand($event)"
+      >
+      </lib-material-editor-toolbar>
+
+   <div class="material-editor-wrapper" #editorWrapper>
+      <div #editor class="material-editor-textarea" [attr.contenteditable]="config.editable"
+            [attr.tabintex]="disabled ? -1 : tabIndex"
+            [attr.translate]="config.translate"
+            [attr.spellcheck]="config.spellcheck" [style.height]="config.height" [style.minHeight]="config.minHeight"
+            [style.maxHeight]="config.maxHeight"
+            (input)="onContentChange($event.target.innerHTML)"
+            (focus)="onTextAreaFocus()"
+            (blur)="onTextAreaBlur($event)"
+            (click)="exec()"
+            (keyup)="exec()"
+            (mouseout)="onTextAreaMouseOut($event)"
+      >
+      </div>
+      <span class="material-editor-placeholder">{{ placeholder || config['placeholder'] }}</span>
+   </div>
+   <lib-material-editor-toolbar *ngIf="config.toolbarPosition === 'bottom'" 
+                           #editorToolbar
+                           (execute)="executeCommand($event)"
+   >
+   </lib-material-editor-toolbar>
+</div>

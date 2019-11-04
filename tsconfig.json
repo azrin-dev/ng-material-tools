@@ -18,6 +18,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "material-editor": [
+        "dist/material-editor"
+      ],
+      "material-editor/*": [
+        "dist/material-editor/*"
+      ]
+    }
   }
 }
